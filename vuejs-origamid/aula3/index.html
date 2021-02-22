@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./vue.js"></script>
+    <title>Vue JS</title>
+</head>
+<body>
+    <div id="app">
+        <h1>{{titulo}}</h1>
+        <a v-bind:href=href>Origamid</a>
+        <p v-if="comprou">Ola</p>
+    </div>
+
+    <script>
+        options = {
+            el: '#app',
+            data: {
+                titulo: "Curso de JavaScript",
+                href: "https://www.origamid.com",
+                comprou: true
+            }
+        }
+        
+        const vm = new Vue(options);
+    </script>
+</body>
+</html>
