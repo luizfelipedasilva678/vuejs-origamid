@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./vue.js"></script>
+    <title>Vue JS</title>
+    <style>
+        p{
+            color: #fff;
+            display: inline-block;
+        }
+
+        .a {
+            background-color: rgb(112, 53, 117);
+        }
+
+        .etc {
+            background-color: rgb(46, 28, 5);
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <button @click="get">Get data</button>
+        <ul>
+            <li v-for="ch in results">
+               <p :class="ch.name[0] === 'A' ? 'a' : 'etc'  ">{{ ch.name }}</p> 
+            </li>
+        </ul>
+    </div>
+
+    <script>
+         options = {
+            el: '#app',
+            data: {
+                results: "",
+            },
+            methods: {
+                get() {
+                   fetch('https://rickandmortyapi.com/api/character')
+                    .then(response => response.json())
+                    .then(response => {
+                        console.log(response)
+                        this.results = response.results
+                    })
+                }
+            }
+        }
+        
+        const vm = new Vue(options);
+    </script>
+</body>
+</html>
