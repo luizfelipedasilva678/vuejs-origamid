@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./vue.js"></script>
+    <title>Vue JS</title>
+</head>
+<body>
+    <div id="app">
+        <lista-produtos :frutas="lista" :titulo="titulo"></lista-produtos>
+    </div>
+
+    <script type="module">
+        const ItemProduto = {
+            name: 'ItemProduto',
+            props: ["nomeFrutas"],
+            template: 
+            `
+                <div> 
+                    <h2 v-for='nomeFruta in nomeFrutas'>Esse é o nome: {{ nomeFruta }}</h2> 
+                </div>     
+            `
+        }
+
+        const ListaProdutos = {
+            name: 'ListaProdutos',
+            props: ["frutas", "titulo"],
+            template: 
+            `
+                <div>
+                    <item-produto :nomeFrutas="frutas"></item-produto>
+                    <h1>{{ titulo }}</h1>
+                    <ul>
+                        <li v-for="fruta in frutas">{{ fruta }}</li>
+                        <li>Teste</li>
+                    </ul>
+                </div>
+            `,
+            components:{
+                ItemProduto: ItemProduto
+            }
+        }
+
+        const options = {
+            el: '#app',
+            data: {
+                titulo: "Esse é o meu título",
+                lista: ["Banana", "Laranja", "Uva"]
+            },
+            components: {
+                ListaProdutos: ListaProdutos
+            }
+        }
+        
+        const vm = new Vue(options);
+    </script>
+</body>
+</html>
